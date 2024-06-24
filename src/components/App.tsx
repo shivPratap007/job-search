@@ -16,12 +16,12 @@ export type TjobItems = {
 
 function App() {
   const [searchText, setSearchText] = useState<string>("");
-  const { jobItems, isLoading } = UseJobItems(searchText);
+  const { jobItemsSliced, isLoading } = UseJobItems(searchText);
   return (
     <>
       <Background />
       <Header searchText={searchText} setSearchText={setSearchText} />
-      <Container jobItems={jobItems} isLoading={isLoading} />
+      <Container jobItems={jobItemsSliced} isLoading={isLoading} />
       <Footer />
     </>
   );
