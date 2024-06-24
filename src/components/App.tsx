@@ -17,16 +17,19 @@ export type TjobItems={
 function App() {
   const [jobItems, setJobItems] = useState<TjobItems[]>([]);
   const [searchText, setSearchText] = useState<string>("");
+  const[isLoading,setIsLoading]=useState(false);
 
   useEffect(() => {
     if (!searchText) return;
 
     async function getData(): Promise<void> {
+      setIsLoading(true);
       const data = await fetch(
         `https://bytegrad.com/course-assets/projects/rmtdev/api/data?search=${searchText}`
       );
       const result = await data.json();
       setJobItems(result.jobItems);
+      setIsLoading(false);
     }
     getData();
   }, [searchText]);
@@ -34,7 +37,7 @@ function App() {
     <>
       <Background />
       <Header searchText={searchText} setSearchText={setSearchText} />
-      <Container jobItems={jobItems} />
+      <Container jobItems={jobItems} isLoading={isLoading}/>
       <Footer />
     </>
   );
