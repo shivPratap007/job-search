@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { TjobItem } from "../components/App";
 import { BACKEND_URL } from "../lib/constants";
 
-export default function UseJobItem(activeId: string):[jobItem:null|TjobItem,jobLoading:boolean] {
+export default function UseJobItem(activeId: string) {
   const [jobItem, setJobItem] = useState<TjobItem | null>(null);
   const [jobLoading, setJobLoading] = useState(false);
   useEffect(() => {
@@ -25,5 +25,5 @@ export default function UseJobItem(activeId: string):[jobItem:null|TjobItem,jobL
     fetchJob();
   }, [activeId]);
 
-  return [jobItem,jobLoading];
+  return { jobItem, jobLoading } as const;
 }

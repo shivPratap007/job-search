@@ -10,12 +10,18 @@ export function JobList({
   jobItems: TjobItems[];
   isLoading: boolean;
 }) {
-  const activeId=UseActiveId()
+  const activeId = UseActiveId();
   return (
     <ul className="job-list">
       {isLoading && <Spinner />}
       {!isLoading &&
-        jobItems.map((jobItem: TjobItems) => <JobListItem jobItem={jobItem} isActive={jobItem.id===parseInt(activeId)} />)}
+        jobItems.map((jobItem: TjobItems) => (
+          <JobListItem
+            key={jobItem.id}
+            jobItem={jobItem}
+            isActive={jobItem.id === parseInt(activeId)}
+          />
+        ))}
     </ul>
   );
 }

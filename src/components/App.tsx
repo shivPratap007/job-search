@@ -35,18 +35,25 @@ export type TjobItem = {
 
 function App() {
   const [searchText, setSearchText] = useState<string>("");
-  const [jobItemsSliced, isLoading,totalJobs] = UseJobItems(searchText);
+  // TO GET JOBS BASED ON SEARCH
+  const { jobItemsSliced, isLoading, totalJobs } = UseJobItems(searchText);
 
   // FOR SELECTING JOB ITEMS FROM ROUTE
   const activeId: string = UseActiveId();
   // GETTING THE JOB OF SELECTED ID
-  const [jobItem,jobLoading] = UseJobItem(activeId);
+  const { jobItem, jobLoading } = UseJobItem(activeId);
 
   return (
     <>
       <Background />
       <Header searchText={searchText} setSearchText={setSearchText} />
-      <Container totalJobs={totalJobs} jobItems={jobItemsSliced} isLoading={isLoading} jobItem={jobItem} jobLoading={jobLoading} />
+      <Container
+        totalJobs={totalJobs}
+        jobItems={jobItemsSliced}
+        isLoading={isLoading}
+        jobItem={jobItem}
+        jobLoading={jobLoading}
+      />
       <Footer />
     </>
   );
