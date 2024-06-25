@@ -1,3 +1,4 @@
+import UseActiveId from "../hooks/UseActiveId";
 import { TjobItems } from "./App";
 import JobListItem from "./JobListItem";
 import Spinner from "./Spinner";
@@ -9,11 +10,12 @@ export function JobList({
   jobItems: TjobItems[];
   isLoading: boolean;
 }) {
+  const activeId=UseActiveId()
   return (
     <ul className="job-list">
       {isLoading && <Spinner />}
       {!isLoading &&
-        jobItems.map((jobItem: TjobItems) => <JobListItem jobItem={jobItem} />)}
+        jobItems.map((jobItem: TjobItems) => <JobListItem jobItem={jobItem} isActive={jobItem.id===parseInt(activeId)} />)}
     </ul>
   );
 }
