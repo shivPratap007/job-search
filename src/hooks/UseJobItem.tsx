@@ -1,29 +1,19 @@
-import { useState, useEffect } from "react";
-import { TjobItem } from "../components/App";
 import { BACKEND_URL } from "../lib/constants";
+import { useQuery } from "react-query";
 
 export default function UseJobItem(activeId: string) {
-  const [jobItem, setJobItem] = useState<TjobItem | null>(null);
-  const [jobLoading, setJobLoading] = useState(false);
-  useEffect(() => {
-    if (!activeId) return;
-
-    async function fetchJob() {
-      setJobLoading(true);
-      try {
-        const res = await fetch(`${BACKEND_URL}/${activeId}`);
-        const job = await res.json();
-        setJobItem(job.jobItem);
-        setJobLoading(false);
-      } catch (error) {
-        console.error("Error fetching job item:", error);
-        setJobItem(null);
-        setJobLoading(true);
-      }
-    }
-
-    fetchJob();
-  }, [activeId]);
-
-  return { jobItem, jobLoading } as const;
+  
+  const { data, isLoading } = useQuery(["job-item", activeId], async () => {
+    const res = await fetch(`${BACKEND_URL}/${activeId}`);
+    const job = await res.json();
+    return job.jobItem;
+  },{
+    staleTime:1000*60*60,
+    refetchOnWindowFocus:false,
+    retry:false,
+    enabled:!!activeId,
+    onError:()=>{},
+  });
+  console.log(data);
+  return {jobItem:data, jobLoading:isLoading}
 }
