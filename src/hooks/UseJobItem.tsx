@@ -13,7 +13,6 @@ export default function UseJobItem(activeId: string) {
       const job = await res.json();
       return job.jobItem;
     } catch (e) {
-      console.log(e);
       throw new Error("Data is not fetched");
     }
   };
@@ -29,6 +28,5 @@ export default function UseJobItem(activeId: string) {
       onError: (error) => {console.log(error)},
     }
   );
-  console.log(isError,'+++++++++++++++');
   return { jobItem: data, jobLoading: isLoading,isError };
 }

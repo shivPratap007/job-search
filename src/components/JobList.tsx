@@ -6,11 +6,16 @@ import Spinner from "./Spinner";
 export function JobList({
   jobItems,
   isLoading,
+  isAllJobsError,
 }: {
-  jobItems: TjobItems[];
+  jobItems: TjobItems[]|undefined|null;
   isLoading: boolean;
+  isAllJobsError:boolean
 }) {
   const activeId = UseActiveId();
+  if(!jobItems) return 
+  console.log(isLoading,"===================")
+  if(isAllJobsError) return 
   return (
     <ul className="job-list">
       {isLoading && <Spinner />}

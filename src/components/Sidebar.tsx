@@ -8,10 +8,12 @@ export default function Sidebar({
   jobItems,
   isLoading,
   totalJobs,
+  isAllJobsError,
 }: {
-  jobItems: TjobItems[];
+  jobItems: TjobItems[]|null|undefined;
   isLoading: boolean;
-  totalJobs:number;
+  totalJobs:number|undefined;
+  isAllJobsError:boolean;
 }) {
   return (
     <div className="sidebar">
@@ -19,7 +21,7 @@ export default function Sidebar({
         <ResultsCount totalJobs={totalJobs} />
         <Sorting />
       </div>
-      <JobList jobItems={jobItems} isLoading={isLoading} />
+      <JobList jobItems={jobItems} isLoading={isLoading} isAllJobsError={isAllJobsError} />
       <Pagination />
     </div>
   );
