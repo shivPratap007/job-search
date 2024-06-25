@@ -21,8 +21,9 @@ export default function UseJobItems(searchText:string) {
     }
     getData();
   }, [searchText]);
-  return {
-    jobItemsSliced,
-    isLoading
-  };
+  // return {
+  //   jobItemsSliced,
+  //   isLoading
+  // };
+  return [jobItemsSliced,isLoading] as const;
 }

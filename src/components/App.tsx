@@ -16,7 +16,7 @@ export type TjobItems = {
 
 function App() {
   const [searchText, setSearchText] = useState<string>("");
-  const { jobItemsSliced, isLoading } = UseJobItems(searchText);
+  const [ jobItemsSliced, isLoading ] = UseJobItems(searchText);
   return (
     <>
       <Background />
