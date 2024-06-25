@@ -40,13 +40,13 @@ function App() {
   // FOR SELECTING JOB ITEMS FROM ROUTE
   const activeId: string = UseActiveId();
   // GETTING THE JOB OF SELECTED ID
-  const jobItem: TjobItem[] = UseJobItem(activeId);
+  const [jobItem,jobLoading] = UseJobItem(activeId);
 
   return (
     <>
       <Background />
       <Header searchText={searchText} setSearchText={setSearchText} />
-      <Container jobItems={jobItemsSliced} isLoading={isLoading} />
+      <Container jobItems={jobItemsSliced} isLoading={isLoading} jobItem={jobItem} jobLoading={jobLoading} />
       <Footer />
     </>
   );
