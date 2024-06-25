@@ -1,0 +1,1 @@
+export const BACKEND_URL='https://bytegrad.com/course-assets/projects/rmtdev/api/data'
