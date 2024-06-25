@@ -5,7 +5,7 @@ export default function UseJobItems(searchText:string) {
   const [jobItems, setJobItems] = useState<TjobItems[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const jobItemsSliced=jobItems.slice(0,7);
+  const jobItemsSliced:TjobItems[]=jobItems.slice(0,7);
 
   useEffect(() => {
     if (!searchText) return;
