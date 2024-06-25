@@ -8,17 +8,19 @@ export default function Container({
   jobItem,
   jobLoading,
   totalJobs,
+  isError,
 }: {
   jobItems: TjobItems[];
   isLoading: boolean;
-  jobItem: TjobItem|null ;
+  jobItem: TjobItem|null|undefined ;
   jobLoading:boolean;
   totalJobs:number;
+  isError:boolean;
 }) {
   return (
     <div className="container">
       <Sidebar totalJobs={totalJobs} jobItems={jobItems} isLoading={isLoading} />
-      <JobItemContent jobItem={jobItem} jobLoading={jobLoading} />
+      <JobItemContent jobItem={jobItem} jobLoading={jobLoading} isError={isError} />
     </div>
   );
 }

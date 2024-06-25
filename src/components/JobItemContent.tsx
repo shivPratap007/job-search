@@ -5,9 +5,11 @@ import Spinner from "./Spinner";
 export default function JobItemContent({
   jobItem,
   jobLoading,
+  isError,
 }: {
-  jobItem: TjobItem | null;
+  jobItem: TjobItem | null|undefined;
   jobLoading: boolean;
+  isError:boolean;
 }) {
   if (jobLoading) {
     return (
@@ -18,6 +20,7 @@ export default function JobItemContent({
       </section>
     );
   }
+  if(isError) return <ErrorComponent/>
   if (!jobItem) return <EmptyJobContent />;
 
   return (
@@ -118,6 +121,20 @@ function EmptyJobContent() {
           <p>What are you looking for?</p>
           <p>
             Start by searching for any technology your ideal job is working with
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+function ErrorComponent() {
+  return (
+    <section className="job-details">
+      <div>
+        <div className="job-details__start-view">
+          <h2 style={{color:'red'}}>Job not available?</h2>
+          <p style={{color:"red"}}>
+            Internal server error
           </p>
         </div>
       </div>

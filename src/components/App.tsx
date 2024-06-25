@@ -41,7 +41,7 @@ function App() {
   // FOR SELECTING JOB ITEMS FROM ROUTE
   const activeId: string = UseActiveId();
   // GETTING THE JOB OF SELECTED ID
-  const { jobItem, jobLoading } = UseJobItem(activeId);
+  const { jobItem, jobLoading,isError } = UseJobItem(activeId);
 
   return (
     <>
@@ -53,6 +53,7 @@ function App() {
         isLoading={isLoading}
         jobItem={jobItem}
         jobLoading={jobLoading}
+        isError={isError}
       />
       <Footer />
     </>
